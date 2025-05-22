@@ -17,14 +17,14 @@ Modern React UI with Axios and React Router
 ### 1. Clone the Repository
 
 
-git clone https://github.com/your-team/student-course-planner.git
-cd student-course-planner/frontend
+github.com/AregVardanyan/CS322Project
+cd  /frontend
 
 Install Dependencies
 
 npm install
 
-3. Start the Dev Server
+Start the Dev Server
 
 npm run dev
 
