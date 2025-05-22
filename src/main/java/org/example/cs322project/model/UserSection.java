@@ -17,8 +17,9 @@ public class UserSection {
     private User user;
 
     @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "author_id")
+    @JoinColumn(name = "section_id")
     private Section section;
 
+    @Enumerated(value = EnumType.STRING)
     private Grade grade;
 }

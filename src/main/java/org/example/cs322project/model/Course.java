@@ -21,11 +21,14 @@ public class Course {
 
     @ManyToMany
     @JoinTable(
-            name = "course_prerequisites",
+            name = "course_prereq",
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "prerequisite_id")
     )
     private List<Course> prerequisites;
 
     private String topic;
+
+    @OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
+    private List<Section> sections;
 }

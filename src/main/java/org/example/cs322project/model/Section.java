@@ -19,6 +19,8 @@ public class Section{
     @JoinColumn(name = "course_id")
     private Course course;
 
+    private String code;
+
     private Integer year;
 
     @Enumerated(EnumType.STRING)

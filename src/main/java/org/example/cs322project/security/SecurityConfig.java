@@ -1,7 +1,16 @@
 package org.example.cs322project.security;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
+import org.example.cs322project.model.Course;
+import org.example.cs322project.model.User;
+import org.example.cs322project.model.UserSection;
+import org.example.cs322project.repository.CourseRepository;
+import org.example.cs322project.repository.UserRepository;
+import org.example.cs322project.repository.UserSectionRepository;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,6 +26,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import java.util.List;
+
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration
@@ -26,6 +37,7 @@ public class SecurityConfig {
 
     private final JwtUtil jwtUtil;
     private final UserDetailsService userDetailsService;
+    private final UserRepository userRepository;
 
 
     @Bean
@@ -37,7 +49,7 @@ public class SecurityConfig {
                         a ->
                                 a.requestMatchers("/auth/**").permitAll()
                                         .anyRequest()
-                                        .authenticated()
+                                        .permitAll()
                 )
                 .authenticationProvider(this.authenticationProvider())
                 .addFilterBefore(this.authorizationFilter(), UsernamePasswordAuthenticationFilter.class)
